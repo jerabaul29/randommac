@@ -1,15 +1,7 @@
 from randommac.generate_random_MAC import *
 from randommac.spoof_MAC_address import *
 from randommac.extract_information_from_nmcli import *
+from randommac.randommac_interface import *
 
-# generate a random MAC address
-random_MAC = generate_random_MAC()
-
-# display / generate informatio from nmcli
-nmcli_show_connections()
-network_names = nmcli_saved_connections()
-network_types = nmcli_types()
-
-# set / change the cloned MAC address on one of the connections
-connection_number = 0
-spoof_MAC_address(network_names[connection_number],network_types[connection_number],random_MAC,PRINT=True)
+change_MAC_all_saved_networks(except_networks_list="Get-1b7f62")
+change_MAC_all_saved_networks_uniform_over_device()

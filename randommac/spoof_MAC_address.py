@@ -11,6 +11,8 @@ def spoof_MAC_address(network_name,network_type,MAC_address, PRINT=False,DEBUG=F
     """spoof MAC address corresponding to network name on interface type"""
 
     if PRINT:
+        print "*********************************************************************"
+        print "spoofing on network name: " + network_name
         print "MAC addresses before: -----------------------------------------------"
         show_MAC_address_connection(network_name,True)
         print "---------------------------------------------------------------------"
@@ -25,5 +27,6 @@ def spoof_MAC_address(network_name,network_type,MAC_address, PRINT=False,DEBUG=F
         print "MAC addresses after: ------------------------------------------------"
         show_MAC_address_connection(network_name,True)
         print "---------------------------------------------------------------------"
+        print "*********************************************************************"
 
     return command_output
