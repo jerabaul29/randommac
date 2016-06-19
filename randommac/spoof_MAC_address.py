@@ -39,6 +39,17 @@ def parse_output_bash(network_names):
 
     return list_network_names
 
+def spoof_MAC_address(network_name,network_type,MAC_address):
+    """spoof MAC address corresponding to network name on interface type"""
+
+    # command to issue
+    command_spoof = "nmcli connection modify " + network_name + " " + network_type + ".cloned-mac-address " + MAC_address
+
+    # execute
+    command_output = subprocess_cmd(command_spoof)
+
+    return command_output
+
 
 bash_network_names = subprocess_cmd(bash_list_saved_connections)
 list_network_names = parse_output_bash(bash_network_names)
@@ -53,3 +64,5 @@ list_network_types = parse_output_bash(bash_network_types)
 print bash_network_types
 print "------------------------"
 print list_network_types[0]
+
+# spoof
