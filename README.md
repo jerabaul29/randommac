@@ -1,6 +1,6 @@
 # randommac
 
-A MAC changer for Linux with Network Manager support
+A MAC changer for Linux when Network Manager is monitoring connections.
 
 ## macchanger and the NetworkManager problem
 
@@ -10,32 +10,26 @@ As I searched the Internet for MAC spoofing solutions, it appeared that the main
 
 ## randommac code structure
 
-- /data/ contains an OUI.list file that is used for generating valid random MAC addresses with valid manufacturer ID.
-- /randommac/ contains the code. Interaction with the code should rely on functions from randommac_interface.py for use as a Python module, or randommac for use as a command line tool.
-- /examples/ contains examples of how to use the Python module. You can start by testing the random MAC number generation (python_compute_random_MAC.py), then create new dummy spoofed connections (python_new_spoofed_connection.py), inspect it (python_inspect_connection.py) and spoof it again (python_spoof_existing_connection.py). You can also have a look at the interactive interface (python_interactive_interface.py).
+- **/randommac/** contains the python code and an *OUI.list* file that is used for generating valid random MAC addresses with valid manufacturer ID. Interaction with the code should rely on functions from *randommac_interface.py* for use as a Python module, or *randommac* for use as a command line tool.
+- **/examples/** contains examples of how to use as a Python module. You can start by testing the random MAC number generation (*python_compute_random_MAC.py*), then create new dummy spoofed connections (*python_new_spoofed_connection.py*), inspect it (*python_inspect_connection.py*) and spoof it again (*python_spoof_existing_connection.py*). You can also have a look at the interactive interface (*python_interactive_interface.py*). All those functionalities are also available directly from the command line tool installed by pip (see **installation**), so on a daily usage you should not need to call the python modules.
 
 ## installation
 
-pip install randommac
+- either clone the repository and directly execute the python code (for debugging / developing / exploring the code)
+- or more simply for using the functionalities as Python module or command line: $ pip install randommac
 
 ## quick start
 
-For a quick step-by-step demonstration of the module, try the interactive interface. Launch by executing examples/python_interactive_interface.py, or in terminal after pip install by:
-
-$ randommac -i
+For a quick step-by-step demonstration of the module, try the interactive interface.
+- either launch by executing *examples/python_interactive_interface.py*
+- or execute in terminal after pip install by: *$ randommac -i*
 
 ## To do
 
-This is a work in progress.
+This is a work in progress. Please report any bug / feature request.
 
-- interactive interface
-- command line interface
+- interactive interface: some missing functions
+- command line interface: some missing functions
+- add periodic automatic spoofing
 - documentation
-- examples
-- release
-- post answers to people having problem with NM and maccanger:
-http://askubuntu.com/questions/603196/macchanger-wlan-not-working
-https://github.com/alobbs/macchanger/issues/22
-http://askubuntu.com/questions/173084/ubuntu-12-04-system-error-macchanger-issue
-- website post?
-- take care of re opening network manager if bug in one of the functions
+- website post
