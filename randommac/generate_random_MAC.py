@@ -21,7 +21,7 @@ def generate_random_MAC(DEBUG=False):
     # path to the data relative to the position of this file
     # file_valid_MAC = os.path.abspath(os.path.join(os.path.dirname(__file__), '/../data/OUI.list'))
     path_to_this_file = os.path.dirname(__file__)
-    file_valid_MAC = path_to_this_file + '/../data/OUI.list'
+    file_valid_MAC = path_to_this_file + '/OUI.list'
 
     if DEBUG:
         print file_valid_MAC
