@@ -43,7 +43,7 @@ def generate_random_MAC(DEBUG=False):
                 line_to_use = line
                 break
 
-    print "Using OUI: " + line_to_use
+    print "Using OUI: " + line_to_use[:-1]
 
     # extract the corresponding MAC address prefixe
     MAC_address_prefix = line_to_use[0:2]+":"+line_to_use[3:5]+":"+line_to_use[6:8]

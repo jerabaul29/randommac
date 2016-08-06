@@ -1,1 +1,5 @@
-#!/usr/
+#!/usr/local/bin/python
+
+# call the module interface on command line
+# this should be included in the /usr/bin/, or /usr/local/bin/ to be callable by
+# command line

@@ -8,13 +8,25 @@ As I searched the Internet for MAC spoofing solutions, it appeared that the main
 
 *NetworkManager* can be controlled from command line through its utility *nmcli*. *nmcli* supports MAC spoofing through the *cloned-mac-address* option. Therefore, I wrote a few Python wrappers to help me use nmcli for performing flexible MAC spoofing
 
-## randommac
+## randommac code structure
 
-- /data/ contains an OUI.list file that is used for generating valid random MAC addresses with valid manufacturer ID
-- /randommac/ contains the code. Interaction with the code should rely on functions from randommac_interface.py for use as a Python module, or randommac for use as a command line tool
-- /examples/ contains examples of how to use the Python module
+- /data/ contains an OUI.list file that is used for generating valid random MAC addresses with valid manufacturer ID.
+- /randommac/ contains the code. Interaction with the code should rely on functions from randommac_interface.py for use as a Python module, or randommac for use as a command line tool.
+- /examples/ contains examples of how to use the Python module. You can start by testing the random MAC number generation (python_compute_random_MAC.py), then create new dummy spoofed connections (python_new_spoofed_connection.py), inspect it (python_inspect_connection.py) and spoof it again (python_spoof_existing_connection.py). You can also have a look at the interactive interface (python_interactive_interface.py).
+
+## installation
+
+Simply clone this repository on you local computer.
+
+## quick start
+
+For a quick step-by-step demonstration of the module, try the interactive interface. Launch by executing examples/python_interactive_interface.py
 
 ## To do
+
+This is a work in progress.
+
+- interactive interface
 - command line interface
 - documentation
 - examples

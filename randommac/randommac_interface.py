@@ -183,13 +183,13 @@ def randomly_perform_command(min_time,max_time,command):
     time.sleep(random.uniform(min_time,max_time))
 
 # a step by step interface to help users
-def step_by_step_interface():
+def interactive_interface():
     """a step by step interface to help the user"""
 
     string_welcome = """\
-    ###########################################################
-    ########## Welcome to step-by-step PyMacChanger ###########
-    ###########################################################
+###########################################################
+########## Welcome to step-by-step PyMacChanger ###########
+###########################################################
     """
     print string_welcome
 
@@ -203,12 +203,57 @@ def step_by_step_interface():
 
     print "---------------------------------------------------------------------"
     string_summary_functions = """\
-    Summary of available functionalities:
-        - [0] spoof existing connection
-        - [1] create spoofed connection on a new WiFi network
-        - [2] spoof all existing connections on an interface
-        - [3] start periodic spoofing
-        - [4] start random time spoofing
+    Summary of some of the available functionalities:
+- [0] create spoofed connection on a new WiFi network
+- [1] spoof existing connection
+- [2] spoof all existing connections on an interface
+- [3] start periodic spoofing
+- [4] start random time spoofing
+- [q] exit interactive interface
+    """
+    print string_summary_functions
+    print "---------------------------------------------------------------------"
+
+    continue_interactive = True
+
+    while continue_interactive:
+
+        function = raw_input("Choose functionality [0-4] or [q]: ")
+
+        string_summary_spoofed_new_wifi = """\
+    Create a spoofed connection on a new Wifi network
+The aim is to never display your true MAC
+See example: pyton_new_spoofed_connection.py
+Main function to use: add_new_wifi_spoofed_connection()
+Command line interface example:
     """
 
-    print
+        string_summary_spoof_existing = """\
+    Spoof an existing connection on any interface
+The aim is to spoof (or modify spoofing) of an existing connection
+See example: python_spoof_existing_connection.py
+Main function to use: change_MAC_network()
+Command line interface example:
+        """
+
+        if function == 'q':
+            continue_interactive = False
+
+        elif function == '0':
+            print "---------------------------------------------------------------------"
+            print string_summary_spoofed_new_wifi
+            test = raw_input("Test function [y/n]: ")
+            if test == 'y':
+                network = raw_input("Enter new network name to spoof: ")
+                password = raw_input("Enter WPA / WPA2 password (empty string for none): ")
+                add_new_wifi_spoofed_connection(network,password)
+            print "---------------------------------------------------------------------"
+
+        elif function == '1':
+            print "---------------------------------------------------------------------"
+            print string_summary_spoof_existing
+            test = raw_input("Test function [y/n]: ")
+            if test == 'y':
+                name_connection = raw_input("Enter name of existing connection to spoof: ")
+                out = change_MAC_network([name_connection])
+            print "---------------------------------------------------------------------"

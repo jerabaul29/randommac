@@ -9,3 +9,8 @@ macchanger.change_MAC_network(['Get-1b7f62'])
 macchanger.show_MAC_address_connection('Get-1b7f62',DEBUG=True)
 
 macchanger.step_by_step_interface()
+
+import sys
+import os
+os.getcwd()
+os.path.dirname(__file__)
