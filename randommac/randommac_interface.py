@@ -13,6 +13,11 @@ from extract_information_from_nmcli import *
 # PYTHON INTERFACE -------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
+class ExceptionNoWifi(Exception):
+    pass
+
+# display a brand new random spoofed MAC address
+
 
 # set Network Manager parameters to ensure max safety --------------------------
 # disable auto logging
@@ -71,12 +76,22 @@ def change_MAC_all_saved_networks_uniform_over_device(except_networks_list=[],PR
             current_MAC = list_devices_met_addresses[current_MAC_index]
             spoof_MAC_address(network_name,network_type,current_MAC,PRINT=PRINT)
 
-# change MAC address randomly, on one saved network ----------------------------
-def change_MAC_network(network_name):
-    """change the MAC address for the network name"""
+# change MAC address randomly, on a list of saved networks ---------------------
+def change_MAC_network(network_name_list):
+    """change the MAC address for the network name list
+    each network name gets a different MAC address"""
 
-# change the MAC address randomly, on a list of saved network ------------------
+    # display / generate informatio from nmcli
+    nmcli_show_connections()
+    network_names = nmcli_saved_connections()
+    network_types = nmcli_types()
 
+    # set / change the cloned MAC address on all the connections in network_name_list
+    for connection_number, network_name in enumerate(network_names):
+        if network_name in network_name_list:
+            network_type = network_types[connection_number]
+            random_MAC = generate_random_MAC()
+            spoof_MAC_address(network_name,network_type,random_MAC,PRINT=PRINT)
 
 # change MAC address randomly, on all saved network for one physical -----------
 # interface
@@ -84,8 +99,6 @@ def change_MAC_network(network_name):
 # periodically perform one of the random MAC changes functions -----------------
 
 # perform at random time one of the random MAC changes functions ---------------
-
-# add a new network with random cloned mac address since beginning -------------
 
 # ------------------------------------------------------------------------------
 # COMMAND LINE WRAPPERS --------------------------------------------------------
