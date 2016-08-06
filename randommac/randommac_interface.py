@@ -3,21 +3,23 @@
 from generate_random_MAC import *
 from spoof_MAC_address import *
 from extract_information_from_nmcli import *
+from execute_bash_command import *
+import time
+import random
 
 ################################################################################
 # NOTE:
-# should do something to avoid displaying mac address when connecting to a network for the first time!!
 ################################################################################
 
 # ------------------------------------------------------------------------------
 # PYTHON INTERFACE -------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
-class ExceptionNoWifi(Exception):
-    pass
-
 # display a brand new random spoofed MAC address
-
+def display_random_MAC():
+    """display a random MAC address"""
+    random_MAC = generate_random_MAC()
+    print random_MAC
 
 # set Network Manager parameters to ensure max safety --------------------------
 # disable auto logging
@@ -26,6 +28,9 @@ class ExceptionNoWifi(Exception):
 def change_MAC_all_saved_networks(except_networks_list=[],PRINT=True):
     """change for random MAC address for all saved networks except those in except
     Each network gets a different MAC address"""
+
+    # deactivate all connections
+    subprocess_cmd("nmcli networking off")
 
     # display / generate informatio from nmcli
     nmcli_show_connections()
@@ -41,11 +46,17 @@ def change_MAC_all_saved_networks(except_networks_list=[],PRINT=True):
             random_MAC = generate_random_MAC()
             spoof_MAC_address(network_name,network_type,random_MAC,PRINT=PRINT)
 
+    # reactivate all connections
+    subprocess_cmd("nmcli networking on")
+
 # change MAC address randomly, on all saved networks, same MAC on each ---------
 # physical interface
 def change_MAC_all_saved_networks_uniform_over_device(except_networks_list=[],PRINT=True):
     """change for random MAC for all saved networks except those in except
     All networks on the same device get the same MAC address"""
+
+    # deactivate all connections
+    subprocess_cmd("nmcli networking off")
 
     # display / generate informatio from nmcli
     nmcli_show_connections()
@@ -76,10 +87,16 @@ def change_MAC_all_saved_networks_uniform_over_device(except_networks_list=[],PR
             current_MAC = list_devices_met_addresses[current_MAC_index]
             spoof_MAC_address(network_name,network_type,current_MAC,PRINT=PRINT)
 
+    # deactivate all connections
+    subprocess_cmd("nmcli networking on")
+
 # change MAC address randomly, on a list of saved networks ---------------------
-def change_MAC_network(network_name_list):
+def change_MAC_network(network_name_list,PRINT=True):
     """change the MAC address for the network name list
     each network name gets a different MAC address"""
+
+    # deactivate all connections
+    subprocess_cmd("nmcli networking off")
 
     # display / generate informatio from nmcli
     nmcli_show_connections()
@@ -93,13 +110,44 @@ def change_MAC_network(network_name_list):
             random_MAC = generate_random_MAC()
             spoof_MAC_address(network_name,network_type,random_MAC,PRINT=PRINT)
 
+    # deactivate all connections
+    subprocess_cmd("nmcli networking on")
+
 # change MAC address randomly, on all saved network for one physical -----------
 # interface
+def change_MAC_interface(interface_name_list,PRINT=True):
+    """change the MAC address for the interface name list
+    each network gets a different MAC addresss"""
+
+    # deactivate all connections
+    subprocess_cmd("nmcli networking off")
+
+    # display / generate informatio from nmcli
+    nmcli_show_connections()
+    network_names = nmcli_saved_connections()
+    network_types = nmcli_types()
+
+    # set / change the cloned MAC address on all the connections in network_name_list
+    for connection_number, network_type in enumerate(network_types):
+        if network_type in interface_name_list:
+            network_name = network_names[connection_number]
+            random_MAC = generate_random_MAC()
+            spoof_MAC_address(network_name,network_type,random_MAC,PRINT=PRINT)
+
+    # deactivate all connections
+    subprocess_cmd("nmcli networking off")
 
 # periodically perform one of the random MAC changes functions -----------------
+def periodically_perform_command(time_step,command):
+    """periodically perform command, waiting (sleep) time_step between calls
+    this is Ok as long as drift is ok in update"""
+
+    eval(command)
+    time.sleep(time_step)
 
 # perform at random time one of the random MAC changes functions ---------------
+def randomly_perform_command(min_time,max_time,command):
+    """performs at random time, uniform in [min_time,max_time], the command"""
 
-# ------------------------------------------------------------------------------
-# COMMAND LINE WRAPPERS --------------------------------------------------------
-# ------------------------------------------------------------------------------
+    eval(command)
+    time.sleep(random.uniform(min_time,max_time))

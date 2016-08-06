@@ -1,7 +1,11 @@
 # do the command line interaction for setting a new MAC with the network manager through nmcli
 from execute_bash_command import *
 from extract_information_from_nmcli import *
+from generate_random_MAC import *
 
+
+class ExceptionNoWifi(Exception):
+    pass
 
 # structure of the command to enter / save a cloned mac address using nmcli ----
 # example:   nmcli connection modify Get-1b7f62 802-11-wireless.cloned-mac-address 11:22:33:44:55:66
