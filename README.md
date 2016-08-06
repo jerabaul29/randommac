@@ -16,11 +16,13 @@ As I searched the Internet for MAC spoofing solutions, it appeared that the main
 
 ## installation
 
-Simply clone this repository on you local computer.
+pip install randommac
 
 ## quick start
 
-For a quick step-by-step demonstration of the module, try the interactive interface. Launch by executing examples/python_interactive_interface.py
+For a quick step-by-step demonstration of the module, try the interactive interface. Launch by executing examples/python_interactive_interface.py, or in terminal after pip install by:
+
+$ randommac -i
 
 ## To do
 
