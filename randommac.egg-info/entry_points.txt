@@ -1,0 +1,3 @@
+[console_scripts]
+randommac = randommac.randommac_commandline:main
+
