@@ -1,0 +1,8 @@
+how to deploy?
+
+- take care of checking dependencies
+- install the module in the python library folder
+- create some python executables to put in the bin. They will be used to call by terminal interface the functionalities. both non interactive
+for command line call and interactive for helping user
+- documentation of the command line interface tools
+- documentation of the python module

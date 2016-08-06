@@ -17,9 +17,10 @@ import random
 
 # display a brand new random spoofed MAC address
 def display_random_MAC():
-    """display a random MAC address"""
+    """display and return a random MAC address"""
     random_MAC = generate_random_MAC()
     print random_MAC
+    return random_MAC
 
 # add a new network with random cloned mac address since beginning -------------
 def add_new_wifi_spoofed_connection(connection_name,connection_password=""):
@@ -56,10 +57,6 @@ def add_new_wifi_spoofed_connection(connection_name,connection_password=""):
         command = "nmcli con modify " + connection_name + " wifi-sec.psk " + connection_password
         output = subprocess_cmd(command)
         print command
-
-
-# set Network Manager parameters to ensure max safety --------------------------
-# disable auto logging
 
 # change MAC address randomly, on all saved networks ---------------------------
 def change_MAC_all_saved_networks(except_networks_list=[],PRINT=True):
@@ -188,3 +185,34 @@ def randomly_perform_command(min_time,max_time,command):
 
     eval(command)
     time.sleep(random.uniform(min_time,max_time))
+
+# a step by step interface to help users
+def step_by_step_interface():
+    """a step by step interface to help the user"""
+
+    string_welcome = """\
+    ###########################################################
+    ########## Welcome to step-by-step PyMacChanger ###########
+    ###########################################################
+    """
+    print string_welcome
+
+    print "---------------------------------------------------------------------"
+    print "Summary saved networks:"
+    nmcli_show_connections()
+
+    print "---------------------------------------------------------------------"
+    print "All available Wifi networks:"
+    nmcli_available_wifi()
+
+    print "---------------------------------------------------------------------"
+    string_summary_functions = """\
+    Summary of available functionalities:
+        - [0] spoof existing connection
+        - [1] create spoofed connection on a new WiFi network
+        - [2] spoof all existing connections on an interface
+        - [3] start periodic spoofing
+        - [4] start random time spoofing
+    """
+
+    print

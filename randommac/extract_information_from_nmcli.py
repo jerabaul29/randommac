@@ -104,3 +104,11 @@ def nmcli_device_wifi(DEBUG=False):
 
     # return the corresponding devices
     return [list_devices[i] for i in list_index_wifi]
+
+def nmcli_available_wifi(print_out=True):
+    """print details about available Wifi networks"""
+
+    output = subprocess_cmd("nmcli dev wifi list")
+
+    if print_out:
+        print output
