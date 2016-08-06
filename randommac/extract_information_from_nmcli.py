@@ -70,6 +70,7 @@ def show_MAC_address_connection(connection, DEBUG=False):
     command_output = subprocess_cmd(command)
 
     if DEBUG:
+        print "MAC address information about connection: " + connection
         print command_output
 
     return(command_output)

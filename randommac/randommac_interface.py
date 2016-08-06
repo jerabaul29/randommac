@@ -67,7 +67,6 @@ def change_MAC_all_saved_networks(except_networks_list=[],PRINT=True):
     subprocess_cmd("nmcli networking off")
 
     # display / generate informatio from nmcli
-    nmcli_show_connections()
     network_names = nmcli_saved_connections()
     network_types = nmcli_types()
 
@@ -93,7 +92,6 @@ def change_MAC_all_saved_networks_uniform_over_device(except_networks_list=[],PR
     subprocess_cmd("nmcli networking off")
 
     # display / generate informatio from nmcli
-    nmcli_show_connections()
     network_names = nmcli_saved_connections()
     network_types = nmcli_types()
 
@@ -133,7 +131,6 @@ def change_MAC_network(network_name_list,PRINT=True):
     subprocess_cmd("nmcli networking off")
 
     # display / generate informatio from nmcli
-    nmcli_show_connections()
     network_names = nmcli_saved_connections()
     network_types = nmcli_types()
 
@@ -157,7 +154,6 @@ def change_MAC_interface(interface_name_list,PRINT=True):
     subprocess_cmd("nmcli networking off")
 
     # display / generate informatio from nmcli
-    nmcli_show_connections()
     network_names = nmcli_saved_connections()
     network_types = nmcli_types()
 

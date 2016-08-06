@@ -24,3 +24,4 @@ http://askubuntu.com/questions/603196/macchanger-wlan-not-working
 https://github.com/alobbs/macchanger/issues/22
 http://askubuntu.com/questions/173084/ubuntu-12-04-system-error-macchanger-issue
 - website post?
+- take care of re opening network manager if bug in one of the functions

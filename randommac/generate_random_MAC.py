@@ -1,6 +1,7 @@
 # NOTE: some functions in random module are not suitable to cryptography
 # to be cryptography safe, use random.SystemRandom that relies on /dev/urandom
 import random
+import os
 
 def generate_random_MAC(DEBUG=False):
     """ generate a random MAC address representation as a string, with a valid vendor OUI
@@ -16,7 +17,14 @@ def generate_random_MAC(DEBUG=False):
 
     # valid OUI --------------------------------------------------------------------
     # use OUI.list from macchanger
-    file_valid_MAC = 'data/OUI.list'
+
+    # path to the data relative to the position of this file
+    # file_valid_MAC = os.path.abspath(os.path.join(os.path.dirname(__file__), '/../data/OUI.list'))
+    path_to_this_file = os.path.dirname(__file__)
+    file_valid_MAC = path_to_this_file + '/../data/OUI.list'
+
+    if DEBUG:
+        print file_valid_MAC
 
     # find number of lines
     number_of_lines = sum(1 for line in open(file_valid_MAC))
@@ -35,8 +43,7 @@ def generate_random_MAC(DEBUG=False):
                 line_to_use = line
                 break
 
-    if DEBUG:
-        print line_to_use
+    print "Using OUI: " + line_to_use
 
     # extract the corresponding MAC address prefixe
     MAC_address_prefix = line_to_use[0:2]+":"+line_to_use[3:5]+":"+line_to_use[6:8]
