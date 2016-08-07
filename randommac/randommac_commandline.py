@@ -31,6 +31,9 @@ def main():
     # additional optional argument for giving also a password
     parser.add_argument("-p","--password", type=str, help="password to connect and spoof to a wifi network, PASSWORD is the password to use on the network described by --connectspoof")
 
+    # optional argument to spoof all knwon connections -------------------------
+    parser.add_argument("-a","--all", help="spoof all known connections, each with its own random MAC",
+                        action="store_true")
 
     args = parser.parse_args()
 
@@ -65,5 +68,11 @@ def main():
             # connect without password
             add_new_wifi_spoofed_connection(args.connectspoof)
 
+    elif args.all:
+        change_MAC_all_saved_networks()
+
     else:
         print "Randommac, python wrappers on nmcli for easy MAC spoofing. Try -h for help."
+
+if __name__=="__main__":
+    main()

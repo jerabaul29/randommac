@@ -257,3 +257,8 @@ Command line interface example:
                 name_connection = raw_input("Enter name of existing connection to spoof: ")
                 out = change_MAC_network([name_connection])
             print "---------------------------------------------------------------------"
+
+        else:
+            print "---------------------------------------------------------------------"
+            print "Sorry, this is either invalid or not implemented yet."
+            print "---------------------------------------------------------------------"
