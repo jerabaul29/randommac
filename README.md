@@ -50,7 +50,8 @@ optional arguments:
   -p PASSWORD, --password PASSWORD
                         password to connect and spoof to a wifi network,
                         PASSWORD is the password to use on the network
-                        described by --connectspoof`
+                        described by --connectspoof
+`
 
 - For getting info from nmcli:
 
