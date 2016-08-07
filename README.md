@@ -28,7 +28,7 @@ For a quick step-by-step demonstration of the module, try the interactive interf
 
 - After having installed by pip, you will get access to the command line tools:
 
-`
+```
 ~$ randommac -h
 usage: randommac [-h] [-i] [-n] [-d DETAILS] [-r] [-s SPOOF] [-c CONNECTSPOOF]
                  [-p PASSWORD]
@@ -51,7 +51,7 @@ optional arguments:
                         password to connect and spoof to a wifi network,
                         PASSWORD is the password to use on the network
                         described by --connectspoof
-`
+```
 
 - For getting info from nmcli:
 
