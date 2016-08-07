@@ -2,7 +2,7 @@ how to deploy?
 
 - update with a new version number in setup.py
 - generate new distribution in terminal: python setup.py sdist
-- push to pypi repository in terminal  : twine upload dist/randommac-0.1.13a1.tar.gz
+- push to pypi repository in terminal (updating the package version!!)  : twine upload dist/randommac-PACKAGE_VERSION.tar.gz
 
 - documentation of the command line interface tools
 - documentation of the python module
